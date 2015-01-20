@@ -17,13 +17,13 @@ public class CreaSudoku {
 	
 	public CreaSudoku() {
 		
-		makeSudoku(0,0);
+		makeSudoku(0,0,1);
 		
 	}  // end of main method
 	
 	public CreaSudoku(int x, int y) {
 		
-		makeSudoku(x,y);
+		makeSudoku(x,y,1);
 		
 	}  // end of main method
 
@@ -32,7 +32,7 @@ public class CreaSudoku {
 	 * @param locX - parámetro X de posición de la ventana.
 	 * @param locY - parámetro Y de posición de la ventana.
 	 */
-	protected void makeSudoku(int locX, int locY) {
+	protected void makeSudoku(int locX, int locY, int dificulty) {
 		
 		/*
 		 * El sudoku se crea mediante la generación independiente de los 9 subcuadrados que
@@ -94,7 +94,7 @@ public class CreaSudoku {
 			// messages
 			if (proc1 && proc2) {
 				if (checkSudoku(sudoku)) {
-					sudokuProblema=generateSudoku(sudoku);
+					sudokuProblema=generateSudoku(sudoku,dificulty);
 					mainFrame=new MainFrame(sudokuProblema,sudoku,locX,locY);	
 					OK=true;
 				}
@@ -512,14 +512,32 @@ public class CreaSudoku {
 	}
 	
 
-	private int[][] generateSudoku(int[][] sudoku ) {
+	/**
+	 * Este método genera el problema del sudoku mediante la eliminación de un 
+	 * número determinado de casillas en la vista del usuario.
+	 * El mínimo de partida es 2x9 filas = 18 casillas. Cada nivel quitará 1
+	 * casilla por nivel: nivel 1-->3 por fila; nivel 2-->4 por fila y así.
+	 * 
+	 * @param sudoku - el sudoku original (solucion).
+	 * @param level - int, con el nivel de dificultad deseado.
+	 * @return - array[][] sudoku con el problema
+	 */
+	private int[][] generateSudoku(int[][] sudoku, int level ) {
 		
+		int blanks=6+(level);
 		int[][] sudokuProb=new int[9][9]; 
+		
 		for (int n=0;n<9;n++) {
-			for (int j=0;j<9;j++) {
-				sudokuProb[n][j]=sudoku[n][j];
-				if ((int)Math.round(Math.random()*4)==2) {
-					sudokuProb[n][j]=0;
+			int contador=0;
+			// repite la linea hasta que tenga los blancos correspondientes al nivel
+			while (contador<blanks) {
+				contador=0;
+				for (int j=0;j<9;j++) {
+					sudokuProb[n][j]=sudoku[n][j];
+					if (contador<blanks && (int)Math.round(Math.random()*3)==2) {
+						sudokuProb[n][j]=0;
+						contador++;
+					}
 				}
 			}
 		}
