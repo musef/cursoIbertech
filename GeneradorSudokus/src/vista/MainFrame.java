@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -18,6 +19,14 @@ import javax.swing.border.Border;
 
 import control.CreaSudoku;
 
+/**
+ * 
+ * @author musef - fmsSoft musef2904ARROBAgmail.com
+ * 
+ * @version 1.1 2015-01-20
+ *
+ */
+
 public class MainFrame implements ActionListener {
 
 	// elementos del formulario
@@ -25,6 +34,7 @@ public class MainFrame implements ActionListener {
 	private JButton boton1;
 	private JButton boton2;
 	private JTextField[][] text;
+	private JComboBox<String> level;
 	private Font myFont=new Font("Arial",Font.BOLD,14);
 	private int locX;				// ubicacion X de la pantalla
 	private int locY;				// ubicacion Y de la pantalla
@@ -37,8 +47,16 @@ public class MainFrame implements ActionListener {
 
 	
 	
-	
-	public MainFrame(int[][]dataProblema, int[][]dataSolucion,int locX, int locY) {
+	/**
+	 * Este método constructor genera la parte visual (vista) de la aplicación.
+	 * 
+	 * @param dataProblema - array[][] con el problema sudoku planteado
+	 * @param dataSolucion - array[][] con el sudoku construido (también llamado solución)
+	 * @param locX - int, coordenada X de la ventana
+	 * @param locY - int, coordenada Y de la ventana
+	 * @param sudokuLevel - int, nivel del sudoku planteado (usado para fijar el JComboBox)
+	 */
+	public MainFrame(int[][]dataProblema, int[][]dataSolucion,int locX, int locY, int sudokuLevel) {
 		// CONSTRUCTOR
 		
 		// inicializacion de variables
@@ -49,6 +67,13 @@ public class MainFrame implements ActionListener {
 		this.dataSolucion=dataSolucion;
 		this.dataProblema=dataProblema;
 		text=new JTextField[9][9];
+		level=new JComboBox<String>();
+		level.addItem("Nivel 1");
+		level.addItem("Nivel 2");
+		level.addItem("Nivel 3");
+		level.addItem("Nivel 4");
+		level.addItem("Nivel 5");
+		level.setSelectedIndex(sudokuLevel-1);
 		
 		// instanciacion del sudoku
 		window=ventana(this.dataProblema,1);
@@ -90,6 +115,14 @@ public class MainFrame implements ActionListener {
 	private JPanel panelMain(int[][] data, int mode) {
 		JPanel panel=new JPanel();
 		panel.setLayout(new BorderLayout());
+		
+		// componente norte
+		JPanel north=new JPanel();
+		north.add(new JLabel("Seleccione nivel:  "));
+		north.add(level);	
+		panel.add(north,BorderLayout.NORTH);
+		
+		// componente center
 		String textoInfo=null;
 		if (mode==1) {
 			// construimos un panel con el problema sudoku propuesto
@@ -98,15 +131,20 @@ public class MainFrame implements ActionListener {
 		} else {
 			// construimos un panel con la solucion al sudoku
 			panel.add(panelSolucion(data),BorderLayout.CENTER);
-			textoInfo="Número de casillas falladas: "+numberErrors;
+			if (numberErrors>0) {
+				textoInfo="Número de casillas falladas: "+numberErrors;
+			} else {
+				textoInfo="¡¡ EXITO TOTAL Y ABSOLUTO !!";
+			}
+			
 		}
 		
+		// componente sur
 		JPanel south=new JPanel();
 		south.setLayout(new BoxLayout(south,BoxLayout.Y_AXIS));
 		south.add(new JLabel(" "));
 		south.add(panelButtons());
-		south.add(new JLabel(" "));
-		
+		south.add(new JLabel(" "));		
 		JLabel info=new JLabel(textoInfo);
 		info.setFont(myFont);
 		info.setForeground(Color.RED);
@@ -243,7 +281,7 @@ public class MainFrame implements ActionListener {
 			locX=window.getX();
 			locY=window.getY();
 			@SuppressWarnings("unused")
-			CreaSudoku crea=new CreaSudoku(locX,locY);
+			CreaSudoku crea=new CreaSudoku(locX,locY,level.getSelectedIndex()+1);
 		}
 		
 	}

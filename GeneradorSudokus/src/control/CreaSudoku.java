@@ -2,6 +2,14 @@ package control;
 
 import vista.MainFrame;
 
+/**
+ * 
+ * @author musef - fmsSoft musef2904ARROBAgmail.com
+ * 
+ * @version 1.1 2015-01-20
+ *
+ */
+
 public class CreaSudoku {
 
 	
@@ -21,16 +29,18 @@ public class CreaSudoku {
 		
 	}  // end of main method
 	
-	public CreaSudoku(int x, int y) {
+	public CreaSudoku(int x, int y, int level) {
 		
-		makeSudoku(x,y,1);
+		makeSudoku(x,y,level);
 		
 	}  // end of main method
 
+	
 	/**
 	 * Este método genera un sudoku de forma aleatoria.
 	 * @param locX - parámetro X de posición de la ventana.
 	 * @param locY - parámetro Y de posición de la ventana.
+	 * @param dificulty - int, con el nivel de dificultad.
 	 */
 	protected void makeSudoku(int locX, int locY, int dificulty) {
 		
@@ -39,7 +49,7 @@ public class CreaSudoku {
 		 * componen un sudoku. Este proceso se realiza iterativamente hasta suministrar un
 		 * sudoku correcto.
 		 * 
-		 * Los cuadrados independientes son 3, y recorren la diagona de izq-superior a dcha-inferior.
+		 * Los cuadrados independientes son 3, y recorren la diagonal de izq-superior a dcha-inferior.
 		 * Esos cuadrados se generan aleatorios.
 		 * 
 		 * El paso siguiente es crear las dos esquinas restantes. Esas esquinas se generan de forma
@@ -95,7 +105,7 @@ public class CreaSudoku {
 			if (proc1 && proc2) {
 				if (checkSudoku(sudoku)) {
 					sudokuProblema=generateSudoku(sudoku,dificulty);
-					mainFrame=new MainFrame(sudokuProblema,sudoku,locX,locY);	
+					mainFrame=new MainFrame(sudokuProblema,sudoku,locX,locY,dificulty);	
 					OK=true;
 				}
 			}
@@ -524,7 +534,7 @@ public class CreaSudoku {
 	 */
 	private int[][] generateSudoku(int[][] sudoku, int level ) {
 		
-		int blanks=6+(level);
+		int blanks=2+(level);
 		int[][] sudokuProb=new int[9][9]; 
 		
 		for (int n=0;n<9;n++) {
