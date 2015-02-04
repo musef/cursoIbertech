@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		 http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+		
+	<bean id="numComplejo" class="agenda.NumeroComplejo">
+		<constructor-arg type="double" value="3" />
+		<constructor-arg type="double" value="4" />
+	</bean>
+	
+	<bean id="num2Complejo" class="agenda.NumeroComplejo">
+		<constructor-arg type="double" value="4" index="1"></constructor-arg>
+		<constructor-arg type="double" value="3" index="0"></constructor-arg>
+	</bean>
+	
+</beans>
