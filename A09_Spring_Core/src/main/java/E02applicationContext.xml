@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		 http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+		<bean id="yoPersona" class="agenda.Persona">
+			<property name="nombre" value="${yo.nombre}"/>
+			<property name="padre" ref="unPadre"/>
+			<property name="madre" ref="unaMadre"/>
+		</bean>
+		<bean id="unPadre" class="agenda.Persona">
+			<property name="nombre" value="${padre.nombre}"/>
+			<property name="padre" ref="abueloPaterno"/>
+			<property name="madre" ref="abuelaPaterna"/>
+		</bean>
+		<bean id="unaMadre" class="agenda.Persona">
+			<property name="nombre" value="${madre.nombre}"/>
+			<property name="padre" ref="abueloMaterno"/>
+			<property name="madre" ref="abuelaMaterna"/>
+		</bean>
+		<bean id="abueloPaterno" class="agenda.Persona">
+			<property name="nombre" value="Antonio"/>
+		</bean>
+		<bean id="abuelaPaterna" class="agenda.Persona">
+			<property name="nombre" value="Antonia"/>
+		</bean>
+		<bean id="abueloMaterno" class="agenda.Persona">
+			<property name="nombre" value="Pepe"/>
+		</bean>
+		<bean id="abuelaMaterna" class="agenda.Persona">
+			<property name="nombre" value="Pepa"/>
+		</bean>
+		
+		<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+			<property name="Location" value="classpath:genealogico.properties"></property>
+		</bean>
+		
+</beans>
