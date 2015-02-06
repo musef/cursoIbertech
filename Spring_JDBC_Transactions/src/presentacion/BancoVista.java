@@ -10,7 +10,7 @@ import excepciones.ClienteSinSaldoException;
 import negocio.BancoNegocioInterface;
 
 @Component
-public class BancoVista implements BancoVistaInterface{
+public class BancoVista implements BancoVistaInterface {
 	
 	@Autowired
 	private BancoNegocioInterface bancoNegocio;

@@ -24,7 +24,7 @@ public class BancoNegocio implements BancoNegocioInterface
 		Connection con=null;
 		try {
 			con=dataSource.getConnection();
-			con.setAutoCommit(false);
+			con.setAutoCommit(false); 
 			System.out.println("Inicio de la transferencia");
 			
 			if (bancoDao.cambiarSaldo(dni1, cantidad,con)==1){

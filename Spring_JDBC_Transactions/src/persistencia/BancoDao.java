@@ -12,8 +12,7 @@ public class BancoDao implements BancoDaoInterface
 {
  
 	
-	public int cambiarSaldo(long dni, double incrementoSaldo,Connection con) 
-	{
+	public int cambiarSaldo(long dni, double incrementoSaldo,Connection con)  {
 		String sql = "update clientes set saldo = saldo + " + incrementoSaldo 
 				+ " where dni = " + dni; 
 		int cuantos = 0;

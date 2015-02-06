@@ -16,5 +16,5 @@ public class A01_MainAplicacion
 		BancoVistaInterface bancoVista = (BancoVistaInterface) ctx.getBean("bancoVista");
 		// Ejecutar el método de inicio de la aplicación
 		bancoVista.iniciarAplicacion();
-	}
+	} 
 }

@@ -11,4 +11,4 @@ insert into datos.clientes (name,dni,saldo) values ("Pedro7",7,150);
 insert into datos.clientes (name,dni,saldo) values ("Pedro8",8,150);
 insert into datos.clientes (name,dni,saldo) values ("Pedro9",9,150);
 insert into datos.clientes (name,dni,saldo) values ("Pedro10",10,150);
-select * from datos.clientes;
+select * from datos.clientes; 

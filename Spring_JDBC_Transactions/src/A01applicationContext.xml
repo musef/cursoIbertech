@@ -30,7 +30,7 @@
 	<!--<util:properties location="classpath:bbdd.properties" id="datos" />-->
 	 <bean id="propertyConfigurer" 
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="location" value="classpath:bbdd.properties"/>
+		<property name="location" value="classpath:bbdd.properties"/> 
 	</bean>
 	
 	<!-- ############# PARA QUE AUTOWIRED FUNCIONE ################################# -->
