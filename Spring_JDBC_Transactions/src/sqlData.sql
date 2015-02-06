@@ -1,0 +1,14 @@
+create database DATOS;
+create table datos.clientes(name varchar(50), dni bigint, saldo double, primary key (dni));
+insert into datos.clientes (name,dni,saldo) values ("Fernando",22222222,150);
+insert into datos.clientes (name,dni,saldo) values ("Pedro1",1,150);
+insert into datos.clientes (name,dni,saldo) values ("Pedro2",2,150);
+insert into datos.clientes (name,dni,saldo) values ("Pedro3",3,150);
+insert into datos.clientes (name,dni,saldo) values ("Pedro4",4,150);
+insert into datos.clientes (name,dni,saldo) values ("Pedro5",5,150);
+insert into datos.clientes (name,dni,saldo) values ("Pedro6",6,150);
+insert into datos.clientes (name,dni,saldo) values ("Pedro7",7,150);
+insert into datos.clientes (name,dni,saldo) values ("Pedro8",8,150);
+insert into datos.clientes (name,dni,saldo) values ("Pedro9",9,150);
+insert into datos.clientes (name,dni,saldo) values ("Pedro10",10,150);
+select * from datos.clientes;
